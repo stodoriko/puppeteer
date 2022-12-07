@@ -47,4 +47,19 @@ describe("Actions Page", () => {
      const elementText = await headerElement.evaluate (el => el.textContent);
      expect(elementText).toEqual("Actions");
   });
+
+  test("Check Description Text", async () => {
+      await page.setDefaultTimeout(4000);
+      const p = await "p f3-mktg color-fg-muted";
+      const text = await page.$eval(p, el => el.textContent);
+      expect(text).toEqual("GitHub Actions makes it easy to automate all your software workflows, now with world-class CI/CD. Build, test, and deploy your code right from GitHub. Make code reviews, branch management, and issue triaging work the way you want.");
+    });
+
+  test("Check Button Text", async () => {
+      await page.setDefaultTimeout(2000);
+      const button = await "a btn-mktg btn-large-mktg";
+      const buttonText = await page.$eval(button, el => el.textContent);
+      expect(buttonText).toEqual("Get started with Actions");
+  });
+
 });
