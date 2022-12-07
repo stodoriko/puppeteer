@@ -34,4 +34,17 @@ describe("Github page tests", () => {
     const actual = await page.$eval(btnSelector, link => link.textContent);
     expect(actual).toContain("Sign up for free")
   });
+
+
+describe("Actions Page", () => {
+  beforeEach(async () => {
+  page = await browser.newPage();
+        await page.goto("https://github.com/features/actions");
+  });
+
+  test("Header Menu Text", async () => {
+     const headerElement = await page.waitForXPath("//a[contains(@class, 'active')]");
+     const elementText = await headerElement.evaluate (el => el.textContent);
+     expect(elementText).toEqual("Actions");
+  });
 });
