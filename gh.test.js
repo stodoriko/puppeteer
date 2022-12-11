@@ -6,17 +6,17 @@ afterEach(async() => {
 
 describe("Github page tests", () => {
   beforeEach(async () => {
-   page = await browser.newPage();
-   await page.goto("https://github.com/team");
-});
+    page = await browser.newPage();
+    await page.goto("https://github.com/team");
+ });
 
   test("The h1 header content'", async () => {
     await page.setDefaultTimeout(3000);
     const firstLink = await page.$("header div div a");
     await firstLink.click();
     await page.waitForSelector('h1');
-    const title2 = await page.title();
-    expect(title2).toEqual('GitHub for teams · Build like the best teams on the planet · GitHub');
+    const title = await page.title();
+    expect(title).toEqual('GitHub for teams · Build like the best teams on the planet · GitHub');
   });
 
   test("The first link attribute", async () => {
@@ -44,7 +44,7 @@ describe("Actions Page", () => {
     await page.goto("https://github.com/features/actions");
   });
 
-  test("Header Menu Text", async () => {
+  test.only("Header Menu Text", async () => {
      const headerElement = await page.waitForXPath("//a[contains(@class, 'active')]");
      const elementText = await headerElement.evaluate (el => el.textContent);
      expect(elementText).toEqual("Actions");
